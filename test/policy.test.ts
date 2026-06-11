@@ -119,5 +119,9 @@ test('emit produces OZ-shaped params in all three artifact forms', async () => {
   assert.equal(parsed.period_ledgers, LEDGERS_PER_DAY);
   assert.equal(BigInt(parsed.spending_limit), proposal.params.spending_limit);
   assert.match(art.rustLiteral, /SpendingLimitAccountParams \{/);
-  assert.match(art.installSketch, /stellar contract invoke/);
+  assert.match(art.installSketch, /add_context_rule/);
+  assert.match(art.installSketch, /CallContract/);
+  assert.match(art.installSketch, /--install_param/);
+  // i128 spending_limit must be a string in CLI JSON (validated on testnet).
+  assert.match(art.paramsJson, /"spending_limit": "/);
 });
