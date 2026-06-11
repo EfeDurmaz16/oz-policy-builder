@@ -110,3 +110,14 @@ test('flagOutliers stays quiet on uniform history', async () => {
   const flags = flagOutliers(week);
   assert.equal(flags.filter((f) => f.reason.includes('far above')).length, 0);
 });
+
+test('emit produces OZ-shaped params in all three artifact forms', async () => {
+  const { emit } = await import('../src/emit.ts');
+  const proposal = buildPolicy(week, { windowDays: 1, headroom: 3 });
+  const art = emit(proposal);
+  const parsed = JSON.parse(art.paramsJson);
+  assert.equal(parsed.period_ledgers, LEDGERS_PER_DAY);
+  assert.equal(BigInt(parsed.spending_limit), proposal.params.spending_limit);
+  assert.match(art.rustLiteral, /SpendingLimitAccountParams \{/);
+  assert.match(art.installSketch, /stellar contract invoke/);
+});
