@@ -90,3 +90,23 @@ test('rolling window evicts old spend so a later transfer is allowed again', () 
     [true, false, true],
   );
 });
+
+test('flagOutliers catches a drain-sized transfer the history never had', async () => {
+  const { flagOutliers } = await import('../src/explain.ts');
+  const txs: ObservedTransfer[] = [
+    { at: '2026-05-01T09:00:00Z', amountStroops: xlm(1), to: 'A', asset: 'XLM' },
+    { at: '2026-05-02T09:00:00Z', amountStroops: xlm(1), to: 'A', asset: 'XLM' },
+    { at: '2026-05-03T09:00:00Z', amountStroops: xlm(2), to: 'B', asset: 'XLM' },
+    { at: '2026-05-04T09:00:00Z', amountStroops: xlm(1), to: 'B', asset: 'XLM' },
+    { at: '2026-05-05T09:00:00Z', amountStroops: xlm(500), to: 'EVIL', asset: 'XLM' },
+  ];
+  const flags = flagOutliers(txs);
+  assert.ok(flags.length >= 1);
+  assert.equal(flags.at(-1)!.transfer.to, 'EVIL');
+});
+
+test('flagOutliers stays quiet on uniform history', async () => {
+  const { flagOutliers } = await import('../src/explain.ts');
+  const flags = flagOutliers(week);
+  assert.equal(flags.filter((f) => f.reason.includes('far above')).length, 0);
+});

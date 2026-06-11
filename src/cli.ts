@@ -7,6 +7,7 @@ import type { ObservedTransfer } from './types.js';
 import { STROOPS_PER_XLM } from './types.js';
 import { buildPolicy } from './propose.js';
 import { simulate } from './simulate.js';
+import { fetchOutgoingTransfers } from './fetch.js';
 
 interface RawTransfer {
   at: string;
@@ -24,13 +25,19 @@ function xlm(stroops: bigint): string {
   return (Number(stroops) / Number(STROOPS_PER_XLM)).toFixed(4);
 }
 
-function main(): void {
-  const path = process.argv[2];
-  if (!path) {
-    console.error('usage: tsx src/cli.ts <transfers.json>');
+async function main(): Promise<void> {
+  const arg = process.argv[2];
+  if (!arg) {
+    console.error('usage: tsx src/cli.ts <transfers.json | G...stellar-account>');
     process.exit(1);
   }
-  const transfers = load(path);
+  const transfers = arg.startsWith('G') && arg.length === 56
+    ? await fetchOutgoingTransfers(arg)
+    : load(arg);
+  if (transfers.length === 0) {
+    console.error('no outgoing payments found for this input');
+    process.exit(1);
+  }
   const proposal = buildPolicy(transfers);
 
   console.log('\nOZ smart-account spending-limit policy (SpendingLimitAccountParams):');
@@ -47,4 +54,4 @@ function main(): void {
   console.log('');
 }
 
-main();
+await main();
