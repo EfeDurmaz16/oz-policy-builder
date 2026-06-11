@@ -1,0 +1,17 @@
+{
+  "name": "oz-policy-builder",
+  "version": "0.1.0",
+  "description": "Generate OpenZeppelin Stellar smart-account policies from observed or simulated transactions",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --import tsx --test test/*.test.ts",
+    "demo": "tsx src/cli.ts fixtures/payer-history.json"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "@types/node": "^22.0.0"
+  }
+}
