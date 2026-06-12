@@ -52,16 +52,16 @@ Already MIT-licensed and public from day one (github.com/EfeDurmaz16/oz-policy-b
 
 ## Roadmap and tranches
 
-Total ask: **$45,000** in XLM (well under the $150k cap; sized to solo engineering hours over ~4 months, per the budget guidance to not over-ask). Milestone 0 (testnet enforcement) is already delivered and is not billed.
+Total ask: **$40,000** in XLM (about a quarter of the $150k cap; sized to solo engineering hours over ~3 months, per the budget guidance to not over-ask). Milestone 0 (testnet enforcement) is already delivered and is not billed.
 
 | Tranche | Deliverable (clear, measurable, verifiable, outcome-based) | Share | Amount |
 |---|---|---|---|
-| **#0 Acceptance** | Project kickoff; published plan and repo baseline. | 10% | $4,500 |
-| **#1 Production installer (MVP)** | One-command testnet installer wrapping the validated `add_context_rule` + `__check_auth` signing flow; emit hardened for multi-asset and Token-2022-style accounts. **Proof:** `oz-policy install <account>` derives and installs a policy on a fresh testnet OZ smart account, end to end, in one command, with the install tx hash printed. | 20% | $9,000 |
-| **#2 Policy coverage + AI assist (testnet)** | Threshold and weighted-signer inference and context-rule suggestions from the observed counterparty graph; multi-asset profiles; an LLM-assisted layer producing natural-language policy explanations and anomaly triage over the deterministic core. **Proof:** for a sampled testnet account, the tool proposes a multi-policy context-rule set, installs it, and the on-chain simulation shows the history passing and seeded anomalies blocked. | 30% | $13,500 |
-| **#3 Mainnet + distribution** | Mainnet deployment path; published CLI; hosted demo; docs; golden conformance vectors for policy decisions so wallets and integrators validate independently. **Proof:** a policy generated and installed against a mainnet OZ smart account (small live deposit), the published CLI on npm, and a conformance-vector file other SDKs can run. | 40% | $18,000 |
+| **#0 Acceptance** | Project kickoff; published plan and repo baseline. | 10% | $4,000 |
+| **#1 Production installer (MVP)** | One-command testnet installer wrapping the validated `add_context_rule` + `__check_auth` signing flow; emit hardened for multi-asset accounts. **Proof:** `oz-policy install <account>` derives and installs a policy on a fresh testnet OZ smart account, end to end, in one command, with the install tx hash printed. | 20% | $8,000 |
+| **#2 Policy coverage + AI assist (testnet)** | Threshold and weighted-signer inference and context-rule suggestions from the observed counterparty graph; multi-asset profiles; an LLM-assisted layer producing natural-language policy explanations and anomaly triage over the deterministic core. **Proof:** for a sampled testnet account, the tool proposes a multi-policy context-rule set, installs it, and the on-chain simulation shows the history passing and seeded anomalies blocked. | 30% | $12,000 |
+| **#3 Mainnet + distribution** | Mainnet deployment path; published CLI on npm; docs; golden conformance vectors for policy decisions so wallets and integrators validate independently. **Proof:** a policy generated and installed against a mainnet OZ smart account (small live deposit), the published CLI, and a conformance-vector file other SDKs can run. | 40% | $16,000 |
 
-Timeline: ~4 months, mainnet by tranche 3, within the 6-month cap.
+Timeline: ~3 months, mainnet by tranche 3, well within the 6-month cap. Token-2022 variants and a hosted web demo are deliberate post-grant follow-ups, kept out of scope to size the ask to the core deliverables.
 
 ## Budget alignment
 
