@@ -50,6 +50,10 @@ Contracts (testnet): policy `CALRGXGNJ4S7HTKCKKBNIJDBE7GQHCXW3MI63ZUBI6LXACYU2IJ
 
 ## Funded scope (Stellar-specific)
 
-- **Tranche 1:** production installer wrapping the validated `add_context_rule` + `__check_auth` signing flow for Stellar smart accounts; emit hardened for multi-asset (multiple SAC) accounts.
-- **Tranche 2:** inference for threshold and weighted-signer policies and context-rule suggestions from the observed counterparty graph; an AI-assist layer that explains each policy and flags anomalies over the deterministic core.
-- **Tranche 3:** mainnet deployment against a live OZ smart account; published CLI; golden conformance vectors for policy decisions so Stellar wallets and integrators can validate independently.
+Total request: USD 65,000 in XLM over ~4 months, mainnet by the final tranche.
+
+- **Tranche 1 (USD 13,000):** production installer wrapping the validated `add_context_rule` + `__check_auth` signing flow for OZ Stellar smart accounts; emit hardened for multi-asset (multiple SAC) accounts; a Freighter wallet install flow so an account owner installs a generated policy with their own wallet, no private key handling.
+- **Tranche 2 (USD 19,500):** inference for threshold and weighted-signer policies and context-rule suggestions from the observed counterparty graph; a hosted web dashboard (observe → propose → simulate → install in the browser) for non-CLI users; an AI-assist layer that explains each policy and flags anomalies over the deterministic core.
+- **Tranche 3 (USD 26,000):** mainnet deployment against a live OZ smart account; published CLI; golden conformance vectors for policy decisions so Stellar wallets and integrators can validate independently; documentation.
+
+Tranche #0 (USD 6,500, 10%) is released on approval. Audit costs are excluded (covered by SDF at tranche #3); no marketing spend.
